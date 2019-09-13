@@ -16,6 +16,7 @@
 		C614384B232C23A900D81401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C614384A232C23A900D81401 /* Assets.xcassets */; };
 		C614384E232C23A900D81401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C614384C232C23A900D81401 /* LaunchScreen.storyboard */; };
 		C6143859232C23A900D81401 /* flappyPomRasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6143858232C23A900D81401 /* flappyPomRasTests.swift */; };
+		C6143867232C2A3F00D81401 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6143866232C2A3F00D81401 /* model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		C6143854232C23A900D81401 /* flappyPomRasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flappyPomRasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6143858232C23A900D81401 /* flappyPomRasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flappyPomRasTests.swift; sourceTree = "<group>"; };
 		C614385A232C23A900D81401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6143866232C2A3F00D81401 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,14 +85,10 @@
 		C614383C232C23A800D81401 /* flappyPomRas */ = {
 			isa = PBXGroup;
 			children = (
-				C614383D232C23A800D81401 /* AppDelegate.swift */,
-				C614383F232C23A800D81401 /* GameScene.sks */,
-				C6143841232C23A800D81401 /* Actions.sks */,
-				C6143843232C23A800D81401 /* GameScene.swift */,
-				C6143845232C23A800D81401 /* GameViewController.swift */,
-				C6143847232C23A800D81401 /* Main.storyboard */,
-				C614384A232C23A900D81401 /* Assets.xcassets */,
-				C614384C232C23A900D81401 /* LaunchScreen.storyboard */,
+				C6143864232C2A0000D81401 /* Control */,
+				C6143868232C2A4600D81401 /* Model */,
+				C6143863232C29F100D81401 /* View */,
+				C6143865232C2A2500D81401 /* SupportFiles */,
 				C614384F232C23A900D81401 /* Info.plist */,
 			);
 			path = flappyPomRas;
@@ -103,6 +101,43 @@
 				C614385A232C23A900D81401 /* Info.plist */,
 			);
 			path = flappyPomRasTests;
+			sourceTree = "<group>";
+		};
+		C6143863232C29F100D81401 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C614383F232C23A800D81401 /* GameScene.sks */,
+				C6143841232C23A800D81401 /* Actions.sks */,
+				C6143847232C23A800D81401 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C6143864232C2A0000D81401 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				C6143843232C23A800D81401 /* GameScene.swift */,
+				C6143845232C23A800D81401 /* GameViewController.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		C6143865232C2A2500D81401 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C614384A232C23A900D81401 /* Assets.xcassets */,
+				C614383D232C23A800D81401 /* AppDelegate.swift */,
+				C614384C232C23A900D81401 /* LaunchScreen.storyboard */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		C6143868232C2A4600D81401 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6143866232C2A3F00D81401 /* model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +246,7 @@
 				C6143844232C23A800D81401 /* GameScene.swift in Sources */,
 				C6143846232C23A800D81401 /* GameViewController.swift in Sources */,
 				C614383E232C23A800D81401 /* AppDelegate.swift in Sources */,
+				C6143867232C2A3F00D81401 /* model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
