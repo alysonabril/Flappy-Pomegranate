@@ -9,7 +9,37 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene{
+class GameScene: SKScene, SKPhysicsContactDelegate{
+    
+    var didGameStart = false
+    var dead = false
+    
+    //Counter
+    var score: Int = 0
+    
+    //Labels
+    var scoreLabel = SKLabelNode()
+    var highScoreLabel = SKLabelNode()
+    var tapToPlay = SKLabelNode()
+    
+    //Buttons
+    var restartButton = SKSpriteNode()
+    var puaseButton = SKSpriteNode()
+    
+    //Logo
+    var logo = SKSpriteNode()
+    
+    //Pillar
+    var xCodePillar = SKNode()
+    var moveAndRemove = SKAction()
+    
+    //Avatar (Pomegranate / Raspberry)
+    //Create Atlas
+    var
+    
+    
+    
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
