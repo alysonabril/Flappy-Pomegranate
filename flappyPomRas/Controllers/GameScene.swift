@@ -20,7 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     //Labels
     var scoreLabel = SKLabelNode()
     var highScoreLabel = SKLabelNode()
-    var tapToPlay = SKLabelNode()
+    var tapToPlayLabel = SKLabelNode()
     
     //Buttons
     var restartButton = SKSpriteNode()
@@ -82,7 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //Create 2 instances of background and loop through them
         
         for i in 0..<2 {
-            let background = SKSpriteNode(imageNamed: "background-1")
+            let background = SKSpriteNode(imageNamed: "bg")
             background.anchorPoint = CGPoint.init(x: 0, y: 0)
             background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
             background.name = "background"
@@ -99,6 +99,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let fruitAnimation = SKAction.animate(with: self.fruitSprites as! [SKTexture], timePerFrame: 0.1)
         
         self.repeatActionFruit = SKAction.repeatForever(fruitAnimation)
+        
+        
+        scoreLabel = createScoreLabel()
+        self.addChild(scoreLabel)
+        
+        highScoreLabel = createHighscoreLabel()
+        self.addChild(highScoreLabel)
+        
+        createLogo()
+        
+        tapToPlayLabel = createTaptoplayLabel()
+        self.addChild(tapToPlayLabel)
         
     }
     
