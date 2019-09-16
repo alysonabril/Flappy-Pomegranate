@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene{
     
     
 
@@ -24,4 +24,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
     }
+}
+
+extension GameScene {
+    
 }
