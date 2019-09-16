@@ -104,12 +104,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             self.addChild(background)
         }
         
+        pomSprites.append(pomRasAtlas.textureNamed("pomWings"))
+        pomSprites.append(pomRasAtlas.textureNamed("pomWingsUp"))
+        
         
         
     }
     
 }
 
-extension GameScene {
-    
-}

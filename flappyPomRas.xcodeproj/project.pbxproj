@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A554B8B2330265C00138EA9 /* GameSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A554B8A2330265C00138EA9 /* GameSceneExtension.swift */; };
 		0BEF6A56232FF20700E86319 /* PomRas.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0BEF6A55232FF20700E86319 /* PomRas.atlas */; };
 		C614383E232C23A800D81401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C614383D232C23A800D81401 /* AppDelegate.swift */; };
 		C6143840232C23A800D81401 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C614383F232C23A800D81401 /* GameScene.sks */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A554B8A2330265C00138EA9 /* GameSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneExtension.swift; sourceTree = "<group>"; };
 		0BEF6A55232FF20700E86319 /* PomRas.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PomRas.atlas; sourceTree = "<group>"; };
 		C614383A232C23A800D81401 /* flappyPomRas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flappyPomRas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C614383D232C23A800D81401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				C6143866232C2A3F00D81401 /* model.swift */,
+				0A554B8A2330265C00138EA9 /* GameSceneExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				C6143846232C23A800D81401 /* GameViewController.swift in Sources */,
 				C614383E232C23A800D81401 /* AppDelegate.swift in Sources */,
 				C6143867232C2A3F00D81401 /* model.swift in Sources */,
+				0A554B8B2330265C00138EA9 /* GameSceneExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
