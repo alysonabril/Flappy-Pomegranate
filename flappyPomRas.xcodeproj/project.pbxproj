@@ -85,7 +85,7 @@
 		C614383C232C23A800D81401 /* flappyPomRas */ = {
 			isa = PBXGroup;
 			children = (
-				C6143864232C2A0000D81401 /* Control */,
+				C6143864232C2A0000D81401 /* Controllers */,
 				C6143868232C2A4600D81401 /* Model */,
 				C6143863232C29F100D81401 /* View */,
 				C6143865232C2A2500D81401 /* SupportFiles */,
@@ -113,13 +113,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		C6143864232C2A0000D81401 /* Control */ = {
+		C6143864232C2A0000D81401 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C6143843232C23A800D81401 /* GameScene.swift */,
 				C6143845232C23A800D81401 /* GameViewController.swift */,
 			);
-			path = Control;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C6143865232C2A2500D81401 /* SupportFiles */ = {
