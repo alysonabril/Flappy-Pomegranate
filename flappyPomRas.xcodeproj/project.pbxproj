@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BEF6A56232FF20700E86319 /* PomRas.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0BEF6A55232FF20700E86319 /* PomRas.atlas */; };
 		C614383E232C23A800D81401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C614383D232C23A800D81401 /* AppDelegate.swift */; };
 		C6143840232C23A800D81401 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C614383F232C23A800D81401 /* GameScene.sks */; };
 		C6143842232C23A800D81401 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6143841232C23A800D81401 /* Actions.sks */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BEF6A55232FF20700E86319 /* PomRas.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PomRas.atlas; sourceTree = "<group>"; };
 		C614383A232C23A800D81401 /* flappyPomRas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flappyPomRas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C614383D232C23A800D81401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C614383F232C23A800D81401 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		C614383C232C23A800D81401 /* flappyPomRas */ = {
 			isa = PBXGroup;
 			children = (
+				0BEF6A55232FF20700E86319 /* PomRas.atlas */,
 				C6143864232C2A0000D81401 /* Controllers */,
 				C6143868232C2A4600D81401 /* Model */,
 				C6143863232C29F100D81401 /* View */,
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6143849232C23A800D81401 /* Main.storyboard in Resources */,
+				0BEF6A56232FF20700E86319 /* PomRas.atlas in Resources */,
 				C6143840232C23A800D81401 /* GameScene.sks in Resources */,
 				C614384B232C23A900D81401 /* Assets.xcassets in Resources */,
 				C614384E232C23A900D81401 /* LaunchScreen.storyboard in Resources */,
