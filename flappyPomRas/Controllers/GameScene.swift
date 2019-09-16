@@ -35,10 +35,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     //Avatar (Pomegranate / Raspberry)
     //Create Atlas
-    let pomRasAtlas = SKTextureAtlas(named: "PomRas")
-    var pomSprites = Array<Any>()
-    var pom = SKSpriteNode()
-    var repeatActionPom = SKAction()
+    let fruitAtlas = SKTextureAtlas(named: "PomRas")
+    var fruitSprites = Array<Any>()
+    var fruit = SKSpriteNode()
+    var repeatActionFruit = SKAction()
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
@@ -59,21 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 }
             }
         }
-        
-        
-//        // Called before each frame is rendered
-//        if isGameStarted == true{
-//            if isDied == false{
-//                enumerateChildNodes(withName: "background", using: ({
-//                    (node, error) in
-//                    let bg = node as! SKSpriteNode
-//                    bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
-//                    if bg.position.x &lt;= -bg.size.width {
-//                        bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y:bg.position.y)
-//                    }
-//                }))
-//            }
-//        }
+
     }
     
     override func didMove(to view: SKView) {
@@ -96,7 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //Create 2 instances of background and loop through them
         
         for i in 0..<2 {
-            let background = SKSpriteNode(imageNamed: "Background")
+            let background = SKSpriteNode(imageNamed: "background-1")
             background.anchorPoint = CGPoint.init(x: 0, y: 0)
             background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
             background.name = "background"
@@ -104,10 +90,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             self.addChild(background)
         }
         
-        pomSprites.append(pomRasAtlas.textureNamed("pomWings"))
-        pomSprites.append(pomRasAtlas.textureNamed("pomWingsUp"))
+        fruitSprites.append(fruitAtlas.textureNamed("pomWings"))
+        fruitSprites.append(fruitAtlas.textureNamed("pomWingsUp"))
         
+        self.fruit = createFruit()
+        self.addChild(fruit)
         
+        let fruitAnimation = SKAction.animate(with: self.fruitSprites as! [SKTexture], timePerFrame: 0.1)
+        
+        self.repeatActionFruit = SKAction.repeatForever(fruitAnimation)
         
     }
     
