@@ -25,7 +25,6 @@ class GameViewController: UIViewController {
         
         scene.scaleMode = .resizeFill
         skView.presentScene(scene)
-    
     }
 
     override var shouldAutorotate: Bool {
