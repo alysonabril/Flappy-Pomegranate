@@ -42,9 +42,11 @@ class GameScene: SKScene{
     var fruitSprites = Array<Any>()
     var fruit = SKSpriteNode()
     var repeatActionFruit = SKAction()
-//    let backgroundMusic = "gypsy.mp3"
+    let bgmusic = "gypsy.mp3"
+    
+    
     //randomsound
-    static let soundArr = ["SoundByte.mp3", "SoundByte2.mp3", "SoundByte3.mp3","SoundByte4.mp3", "SoundByte5.mp3"]
+    static let soundArr = ["cool.mp3", "great.mp3", "awesome.mp3","neat.mp3", "whoa.mp3"]
     static var randomSoundName = soundArr.randomElement()!
     
     var playSound = SKAction.playSoundFileNamed(GameScene.randomSoundName, waitForCompletion: false)
@@ -239,6 +241,9 @@ class GameScene: SKScene{
         
         tapToPlayLabel = createTaptoplayLabel()
         self.addChild(tapToPlayLabel)
+        
+        let bgMusic = SKAudioNode(fileNamed: bgmusic )
+        self.addChild(bgMusic)
         
     }
     
