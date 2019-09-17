@@ -28,10 +28,10 @@ extension GameScene {
         
         
         //Linear Damping: This property is used to simulate fluid or air friction forces on the body. The property must be a value between 0.0 and 1.0. The default value is 0.1. If the value is 0.0, no linear damping is applied to the object.
-        fruit.physicsBody?.linearDamping = 1.1
+        fruit.physicsBody?.linearDamping = 1.0
         
         //This is how we determine the bounciness of said fruit
-        fruit.physicsBody?.restitution = 0
+        fruit.physicsBody?.restitution = 1
         
         fruit.physicsBody?.categoryBitMask = CollisionBitMask.avatarCategory
         fruit.physicsBody?.collisionBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.groundCategory
@@ -65,14 +65,16 @@ extension GameScene {
         self.addChild(pauseButton)
     }
     
-    func createChangeFruitButton(){
-        changeFruitButton = SKSpriteNode(imageNamed:"pomWings")
-        changeFruitButton.size = CGSize(width: 100, height: 100)
-        changeFruitButton.position = CGPoint(x: 30 , y: 30)
-        changeFruitButton.zPosition = 6
+    func createPickRasButton(){
+        pickRasButton = SKSpriteNode(imageNamed: "raspWings")
+        pickRasButton.size = CGSize(width: 100, height: 100)
+        pickRasButton.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 100)
         
-        self.addChild(changeFruitButton)
+        pickRasButton.zPosition = 6
+        self.addChild(pickRasButton)
     }
+    
+
     
     
     func createScoreLabel() -> SKLabelNode{
@@ -82,16 +84,9 @@ extension GameScene {
         scoreLabel.text = "\(score)"
         scoreLabel.text = "0"
         
-        //       let scoreBg = SKShapeNode()
-        //       scoreBg.position = CGPoint(x: 0, y: 0)
-        //       scoreBg.path = CGPath(roundedRect: CGRect(x: CGFloat(-50), y: CGFloat(-30), width: CGFloat(100), height: CGFloat(100)), cornerWidth: 50, cornerHeight: 50, transform: nil)
-        //       let scoreBgColor = UIColor(red: CGFloat(0.0 / 255.0), green: CGFloat(0.0 / 255.0), blue: CGFloat(0.0 / 255.0), alpha: CGFloat(0.2))
-        //       scoreBg.strokeColor = UIColor.clear
-        //       scoreBg.fillColor = scoreBgColor
-        //       scoreBg.zPosition = -1
-        //       scoreLabel.addChild(scoreBg)
         return scoreLabel
     }
+    
     
     func createHighscoreLabel() -> SKLabelNode {
         let highscoreLbl = SKLabelNode()
@@ -106,7 +101,20 @@ extension GameScene {
         highscoreLbl.fontName = "Helvetica-Bold"
         return highscoreLbl
     }
-    //5
+    
+    func createUserPromptLabel() -> SKLabelNode{
+        let userChoiceLabel = SKLabelNode()
+        userChoiceLabel.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 200)
+        
+        userChoiceLabel.text = "Choose your character"
+        userChoiceLabel.zPosition = 5
+        userChoiceLabel.fontSize = 25
+        userChoiceLabel.fontName = "Noteworthy-Bold"
+        
+        return userChoiceLabel
+    }
+    
+    
     func createLogo() {
         logo = SKSpriteNode()
         logo = SKSpriteNode(imageNamed: "LaunchScreenLogo")

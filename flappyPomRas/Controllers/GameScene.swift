@@ -21,11 +21,13 @@ class GameScene: SKScene{
     var scoreLabel = SKLabelNode()
     var highScoreLabel = SKLabelNode()
     var tapToPlayLabel = SKLabelNode()
+    var userChoiceLabel = SKLabelNode()
     
     //Buttons
     var restartButton = SKSpriteNode()
     var pauseButton = SKSpriteNode()
-    var changeFruitButton = SKSpriteNode()
+    var pickRasButton = SKSpriteNode()
+    var pickPomButtom = SKSpriteNode()
     
     //Logo
     var logo = SKSpriteNode()
@@ -48,11 +50,25 @@ class GameScene: SKScene{
         
         
         if didGameStart == false{
-            startGame()
+            
+            //Logo shrinks and disappears
+            logo.run(SKAction.scale(by: 0.5, duration: 0.2), completion: {
+                self.logo.removeFromParent()
+            })
+            
+            //Tap to play label disappears
+            tapToPlayLabel.removeFromParent()
+            
+            userChoiceLabel = createUserPromptLabel()
+            self.addChild(userChoiceLabel)
+            
+            createPickRasButton()
+            
+            fruit.isHidden = true
+            
+//            startGame()
         }
         
-        fruit.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        fruit.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 160))
         
         for touch in touches{
             
@@ -89,6 +105,11 @@ class GameScene: SKScene{
         
     }
     
+    private func enablePlayerMovement(){
+        fruit.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        fruit.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 160))
+    }
+    
     
     private func startGame(){
         didGameStart = true
@@ -100,16 +121,8 @@ class GameScene: SKScene{
         createPauseButton()
         
         //Switch Fruit Button appears
-        createChangeFruitButton()
-        
-        
-        //Logo shrinks and disappears
-        logo.run(SKAction.scale(by: 0.5, duration: 0.3), completion: {
-            self.logo.removeFromParent()
-        })
-        
-        //Tap to play label disappears
-        tapToPlayLabel.removeFromParent()
+//        createChangeFruitButton()
+//
         
         //Fruit avatar will continue to be animated
         self.fruit.run(repeatActionFruit)
@@ -141,6 +154,9 @@ class GameScene: SKScene{
         //Applies an impulse to the center of gravity of a physics body.
         //            This method affects the body’s linear velocity without changing the body’s angular velocity.
         fruit.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 160))
+        
+        //Fruit can move now
+        enablePlayerMovement()
     }
     
     
