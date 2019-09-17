@@ -70,7 +70,7 @@ extension GameScene {
         scoreLabel.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.6)
         scoreLabel.zPosition = 5
         scoreLabel.text = "\(score)"
-        scoreLabel.text = "I'm going to kill you guys"
+        scoreLabel.text = "0"
         
         //       let scoreBg = SKShapeNode()
         //       scoreBg.position = CGPoint(x: 0, y: 0)
