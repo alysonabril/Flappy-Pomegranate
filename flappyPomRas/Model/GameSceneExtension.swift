@@ -138,7 +138,7 @@ extension GameScene {
         
         //Pair of xcode pillars
         xCodePillarPair = SKNode()
-        xCodePillarPair.name = "wallPair"
+        xCodePillarPair.name = "xCodePillarPair"
         
         let topPillar = SKSpriteNode(imageNamed: "EC3")
         let bottomPillar = SKSpriteNode(imageNamed: "EC2")

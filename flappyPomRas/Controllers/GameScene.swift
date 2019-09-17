@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate{
+class GameScene: SKScene{
     
     var didGameStart = false
     var notDead = false
@@ -52,6 +52,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         fruit.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         fruit.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 160))
+        
+        for touch in touches{
+            
+            //Touch coordinates
+            let location = touch.location(in: self)
+            
+            //If user touches where the restart button is located, only appears if the game is over
+            if notDead == true{
+                if restartButton.contains(location){
+                    if UserDefaults.standard.object(forKey: "highestScore") != nil {
+                        let hscore = UserDefaults.standard.integer(forKey: "highestScore")
+                        if hscore < Int(scoreLabel.text!)!{
+                            UserDefaults.standard.set(scoreLabel.text, forKey: "highestScore")
+                        }
+                    } else {
+                        UserDefaults.standard.set(0, forKey: "highestScore")
+                    }
+                    restartScene()
+                }
+            } else {
+                //If the user touches where the pause button is located at
+                if pauseButton.contains(location){
+                    if self.isPaused == false{
+                        self.isPaused = true
+                        pauseButton.texture = SKTexture(imageNamed: "play")
+                    } else {
+                        self.isPaused = false
+                        pauseButton.texture = SKTexture(imageNamed: "pause")
+                    }
+                }
+            }
+        }
+        
+        
     }
     
     
@@ -89,7 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let SpawnDelay = SKAction.sequence([spawnXCodePair, delay])
         let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
         self.run(spawnDelayForever)
-
+        
         let distance = CGFloat(self.frame.width + xCodePillarPair.frame.width)
         let movePillars = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
         let removePillars = SKAction.removeFromParent()
@@ -150,12 +184,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             background.size = (self.view?.bounds.size)!
             self.addChild(background)
         }
-//
-//        fruitSprites.append(fruitAtlas.textureNamed("pomWings"))
-//        fruitSprites.append(fruitAtlas.textureNamed("pomWingsUp"))
+        //
+        //        fruitSprites.append(fruitAtlas.textureNamed("pomWings"))
+        //        fruitSprites.append(fruitAtlas.textureNamed("pomWingsUp"))
         
         fruitSprites.append(fruitAtlas.textureNamed("raspWings"))
-           fruitSprites.append(fruitAtlas.textureNamed("raspWingsUp"))
+        fruitSprites.append(fruitAtlas.textureNamed("raspWingsUp"))
         
         self.fruit = createFruit()
         self.addChild(fruit)
@@ -175,6 +209,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         tapToPlayLabel = createTaptoplayLabel()
         self.addChild(tapToPlayLabel)
         
+    }
+    
+    func restartScene(){
+        self.removeAllChildren()
+        self.removeAllActions()
+        notDead = false
+        didGameStart = false
+        score = 0
+        createScene()
+    }
+    
+}
+
+extension GameScene: SKPhysicsContactDelegate{
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let bodyA = contact.bodyA
+        let bodyB = contact.bodyB
+        
+        //Game Over Scenario
+        if bodyA.categoryBitMask == CollisionBitMask.avatarCategory && bodyB.categoryBitMask == CollisionBitMask.pillarCategory || bodyA.categoryBitMask == CollisionBitMask.pillarCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory ||
+            bodyA.categoryBitMask == CollisionBitMask.avatarCategory &&
+            bodyB.categoryBitMask == CollisionBitMask.groundCategory ||
+            bodyA.categoryBitMask == CollisionBitMask.groundCategory &&
+            bodyB.categoryBitMask == CollisionBitMask.avatarCategory{
+            
+            //Stop everything
+            enumerateChildNodes(withName: "xCodePillarPair", using: ({
+                (node, error) in
+                node.speed = 0
+                self.removeAllActions()
+            }))
+            
+            if notDead == false{
+                
+                //Game Over
+                notDead = true
+                
+                //Remove Pause Button
+                pauseButton.removeFromParent()
+                
+                //Show Restart Button
+                createRestartButton()
+                
+                //Stop all actions (e.g. fruit animations)
+                fruit.removeAllActions()
+            }
+            
+            
+        }else if bodyA.categoryBitMask == CollisionBitMask.avatarCategory && bodyB.categoryBitMask == CollisionBitMask.staffCategory{
+            // When fruit comes into contact with the staff bitmoji
+            
+            //            run(-insertSoundbytehere) play soundbyte if David
+            
+            //Update Score Counter
+            score += 1
+            scoreLabel.text = "\(score)"
+            
+            //Take out bitmoji
+        
+                bodyB.node?.removeFromParent()
+            
+        }else if bodyA.categoryBitMask == CollisionBitMask.staffCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory{
+            // When fruit comes into contact with the staff bitmoji
+            
+            //            run(-insertSoundbytehere) play soundbyte if David
+            
+            //Update Score Counter
+            score += 1
+            scoreLabel.text = "\(score)"
+            
+            //Take out bitmoji
+        
+                bodyA.node?.removeFromParent()
+            
+        }
     }
     
 }
