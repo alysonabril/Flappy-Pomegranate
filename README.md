@@ -9,7 +9,7 @@ The game allows you to choose between two characters as your player:
 
 ## Home Screen
 
-![gif](https://gph.is/g/E3gyLxY)
+![gif](https://media.giphy.com/media/TIQPXHWVBUo9sVrZcd/giphy.gif)
 
 ## Game Play Screen
 ## Game Over Screen
