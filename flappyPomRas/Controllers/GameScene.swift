@@ -59,16 +59,17 @@ class GameScene: SKScene{
             //Tap to play label disappears
             tapToPlayLabel.removeFromParent()
             
-            userChoiceLabel = createUserPromptLabel()
-            self.addChild(userChoiceLabel)
+           // userChoiceLabel = createUserPromptLabel()
+           // self.addChild(userChoiceLabel)
+//
+//            createPickRasButton()
+//
+//            fruit.isHidden = true
             
-            createPickRasButton()
-            
-            fruit.isHidden = true
-            
-//            startGame()
+            startGame()
         }
         
+        enablePlayerMovement()
         
         for touch in touches{
             
@@ -249,6 +250,11 @@ extension GameScene: SKPhysicsContactDelegate{
         let bodyA = contact.bodyA
         let bodyB = contact.bodyB
         
+        let soundArr = ["SoundByte.mp3", "SoundByte2.mp3", "SoundByte3.mp3","SoundByte4.mp3", "SoundByte5.mp3"]
+        
+        let randoSoundName = soundArr[Int(arc4random_uniform(UInt32(soundArr.count)))]
+        
+        
         //Game Over Scenario
         if bodyA.categoryBitMask == CollisionBitMask.avatarCategory && bodyB.categoryBitMask == CollisionBitMask.pillarCategory || bodyA.categoryBitMask == CollisionBitMask.pillarCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory ||
             bodyA.categoryBitMask == CollisionBitMask.avatarCategory &&
@@ -280,10 +286,7 @@ extension GameScene: SKPhysicsContactDelegate{
             
             
         }else if bodyA.categoryBitMask == CollisionBitMask.avatarCategory && bodyB.categoryBitMask == CollisionBitMask.staffCategory{
-            // When fruit comes into contact with the staff bitmoji
-            
-            //            run(-insertSoundbytehere) play soundbyte if David
-            
+            run(SKAction.playSoundFileNamed(randoSoundName, waitForCompletion: false))
             //Update Score Counter
             score += 1
             scoreLabel.text = "\(score)"
@@ -292,11 +295,10 @@ extension GameScene: SKPhysicsContactDelegate{
         
                 bodyB.node?.removeFromParent()
             
+            
         }else if bodyA.categoryBitMask == CollisionBitMask.staffCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory{
-            // When fruit comes into contact with the staff bitmoji
-            
-            //            run(-insertSoundbytehere) play soundbyte if David
-            
+            run(SKAction.playSoundFileNamed(randoSoundName, waitForCompletion: false))
+          
             //Update Score Counter
             score += 1
             scoreLabel.text = "\(score)"
