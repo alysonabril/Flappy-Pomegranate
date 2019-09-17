@@ -45,9 +45,9 @@ class GameScene: SKScene{
 //    let backgroundMusic = "gypsy.mp3"
     //randomsound
     static let soundArr = ["SoundByte.mp3", "SoundByte2.mp3", "SoundByte3.mp3","SoundByte4.mp3", "SoundByte5.mp3"]
-    static let randomSoundName = soundArr[Int(arc4random_uniform(UInt32(soundArr.count)))]
+    static var randomSoundName = soundArr.randomElement()!
     
-    let playSound = SKAction.playSoundFileNamed(GameScene.randomSoundName, waitForCompletion: false)
+    var playSound = SKAction.playSoundFileNamed(GameScene.randomSoundName, waitForCompletion: false)
     
     
     
@@ -167,13 +167,6 @@ class GameScene: SKScene{
         
         //Fruit can move now
         enablePlayerMovement()
-        
-        //randomSound
-      
-        
-        run(playSound)
-        
-        
     }
     
     
@@ -299,9 +292,14 @@ extension GameScene: SKPhysicsContactDelegate{
             
             
         }else if bodyA.categoryBitMask == CollisionBitMask.avatarCategory && bodyB.categoryBitMask == CollisionBitMask.staffCategory{
+            //plays random Davidism
+            GameScene.randomSoundName = GameScene.soundArr.randomElement()!
+            playSound = SKAction.playSoundFileNamed(GameScene.randomSoundName, waitForCompletion: false)
+            run(playSound)
             
             //Update Score Counter
-            run(playSound)
+            
+            
             score += 1
             scoreLabel.text = "\(score)"
             
@@ -311,8 +309,12 @@ extension GameScene: SKPhysicsContactDelegate{
             
             
         }else if bodyA.categoryBitMask == CollisionBitMask.staffCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory{
-            //Update Score Counter
+            //plays random Davidism
+            GameScene.randomSoundName = GameScene.soundArr.randomElement()!
+            playSound = SKAction.playSoundFileNamed(GameScene.randomSoundName, waitForCompletion: false)
+            
             run(playSound)
+            //Update Score Counter
             score += 1
             scoreLabel.text = "\(score)"
             
