@@ -25,6 +25,7 @@ class GameScene: SKScene{
     //Buttons
     var restartButton = SKSpriteNode()
     var pauseButton = SKSpriteNode()
+    var changeFruitButton = SKSpriteNode()
     
     //Logo
     var logo = SKSpriteNode()
@@ -97,6 +98,10 @@ class GameScene: SKScene{
         
         //Pause button appears upon starting the game
         createPauseButton()
+        
+        //Switch Fruit Button appears
+        createChangeFruitButton()
+        
         
         //Logo shrinks and disappears
         logo.run(SKAction.scale(by: 0.5, duration: 0.3), completion: {

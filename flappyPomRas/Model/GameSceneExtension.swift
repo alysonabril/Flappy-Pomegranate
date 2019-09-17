@@ -59,11 +59,21 @@ extension GameScene {
         pauseButton = SKSpriteNode(imageNamed: "pause")
         pauseButton.size = CGSize(width: 50, height: 50)
         pauseButton.position = CGPoint(x: self.frame.width - 30 , y: 30)
+
         pauseButton.zPosition = 6
         
         self.addChild(pauseButton)
-        
     }
+    
+    func createChangeFruitButton(){
+        changeFruitButton = SKSpriteNode(imageNamed:"pomWings")
+        changeFruitButton.size = CGSize(width: 100, height: 100)
+        changeFruitButton.position = CGPoint(x: 30 , y: 30)
+        changeFruitButton.zPosition = 6
+        
+        self.addChild(changeFruitButton)
+    }
+    
     
     func createScoreLabel() -> SKLabelNode{
         let scoreLabel = SKLabelNode()
@@ -122,13 +132,18 @@ extension GameScene {
        
         //Staff Bitmoji
         //David is used as a placeholder, rest of the staff will be added later
-        let staffBitmoji = SKSpriteNode(imageNamed: "David")
+        
+        let faces = ["David","David2","David3","David4", "Iram", "Iram3", "Ish", "Ish2", "Oli", "Oli2"]
+        
+        let randomFace = Int(arc4random_uniform(UInt32(faces.count)))
+        
+        let staffBitmoji = SKSpriteNode(imageNamed: faces[randomFace])
         
         staffBitmoji.size = CGSize(width: 100, height: 100)
         staffBitmoji.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
         
-        //Currently the textures are squares.  Will need to recrop said assets as a circle before changing the physics body
-        staffBitmoji.physicsBody = SKPhysicsBody(rectangleOf: staffBitmoji.size)
+        staffBitmoji.physicsBody = SKPhysicsBody(circleOfRadius: staffBitmoji.size.width / 2)
+        
         staffBitmoji.physicsBody?.affectedByGravity = false
         staffBitmoji.physicsBody?.isDynamic = false
         staffBitmoji.physicsBody?.categoryBitMask = CollisionBitMask.staffCategory
