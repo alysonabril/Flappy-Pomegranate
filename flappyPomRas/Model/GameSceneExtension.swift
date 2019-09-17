@@ -85,7 +85,7 @@ extension GameScene {
     
     func createHighscoreLabel() -> SKLabelNode {
         let highscoreLbl = SKLabelNode()
-        highscoreLbl.position = CGPoint(x: self.frame.width - 80, y: self.frame.height - 22)
+        highscoreLbl.position = CGPoint(x: self.frame.width - 80, y: self.frame.height - 62)
         if let highestScore = UserDefaults.standard.object(forKey: "highestScore"){
             highscoreLbl.text = "Highest Score: \(highestScore)"
         } else {
@@ -140,7 +140,7 @@ extension GameScene {
         xCodePillarPair = SKNode()
         xCodePillarPair.name = "wallPair"
         
-        let topPillar = SKSpriteNode(imageNamed: "EC1")
+        let topPillar = SKSpriteNode(imageNamed: "EC3")
         let bottomPillar = SKSpriteNode(imageNamed: "EC2")
         
         topPillar.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 420)
