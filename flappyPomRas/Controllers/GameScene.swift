@@ -42,6 +42,13 @@ class GameScene: SKScene{
     var fruitSprites = Array<Any>()
     var fruit = SKSpriteNode()
     var repeatActionFruit = SKAction()
+//    let backgroundMusic = "gypsy.mp3"
+    //randomsound
+    static let soundArr = ["SoundByte.mp3", "SoundByte2.mp3", "SoundByte3.mp3","SoundByte4.mp3", "SoundByte5.mp3"]
+    static let randomSoundName = soundArr[Int(arc4random_uniform(UInt32(soundArr.count)))]
+    
+    let playSound = SKAction.playSoundFileNamed(GameScene.randomSoundName, waitForCompletion: false)
+    
     
     
     
@@ -50,7 +57,7 @@ class GameScene: SKScene{
         
         
         if didGameStart == false{
-            
+           
             //Logo shrinks and disappears
             logo.run(SKAction.scale(by: 0.5, duration: 0.2), completion: {
                 self.logo.removeFromParent()
@@ -58,6 +65,7 @@ class GameScene: SKScene{
             
             //Tap to play label disappears
             tapToPlayLabel.removeFromParent()
+            
             
            // userChoiceLabel = createUserPromptLabel()
            // self.addChild(userChoiceLabel)
@@ -114,6 +122,7 @@ class GameScene: SKScene{
     
     private func startGame(){
         didGameStart = true
+       
         
         //Fruit avatar will now be able to fall
         fruit.physicsBody?.affectedByGravity = true
@@ -158,6 +167,13 @@ class GameScene: SKScene{
         
         //Fruit can move now
         enablePlayerMovement()
+        
+        //randomSound
+      
+        
+        run(playSound)
+        
+        
     }
     
     
@@ -250,9 +266,6 @@ extension GameScene: SKPhysicsContactDelegate{
         let bodyA = contact.bodyA
         let bodyB = contact.bodyB
         
-        let soundArr = ["SoundByte.mp3", "SoundByte2.mp3", "SoundByte3.mp3","SoundByte4.mp3", "SoundByte5.mp3"]
-        
-        let randoSoundName = soundArr[Int(arc4random_uniform(UInt32(soundArr.count)))]
         
         
         //Game Over Scenario
@@ -286,8 +299,9 @@ extension GameScene: SKPhysicsContactDelegate{
             
             
         }else if bodyA.categoryBitMask == CollisionBitMask.avatarCategory && bodyB.categoryBitMask == CollisionBitMask.staffCategory{
-            run(SKAction.playSoundFileNamed(randoSoundName, waitForCompletion: false))
+            
             //Update Score Counter
+            run(playSound)
             score += 1
             scoreLabel.text = "\(score)"
             
@@ -297,9 +311,8 @@ extension GameScene: SKPhysicsContactDelegate{
             
             
         }else if bodyA.categoryBitMask == CollisionBitMask.staffCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory{
-            run(SKAction.playSoundFileNamed(randoSoundName, waitForCompletion: false))
-          
             //Update Score Counter
+            run(playSound)
             score += 1
             scoreLabel.text = "\(score)"
             
