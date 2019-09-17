@@ -163,8 +163,13 @@ extension GameScene {
         xCodePillarPair = SKNode()
         xCodePillarPair.name = "xCodePillarPair"
         
-        let topPillar = SKSpriteNode(imageNamed: "EC3")
-        let bottomPillar = SKSpriteNode(imageNamed: "EC2")
+        let pillarArr = ["EC2", "EC3","EC5","EC7","EC8","EC9","EC10", "EC11"]
+        
+        let randoPillar = pillarArr[Int(arc4random_uniform (UInt32(pillarArr.count)))]
+        
+        let topPillar = SKSpriteNode(imageNamed: randoPillar)
+        let bottomPillar = SKSpriteNode(imageNamed: randoPillar)
+    
         
         topPillar.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 420)
         bottomPillar.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - 420)
