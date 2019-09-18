@@ -41,3 +41,5 @@ Looking to pass time during your five minute breaks during lecture, play PomBerr
 Do you need a Rubber Duck Debugging Session, but dont have your duck with you, well you're in luck! Play Pomberry, and listen to Davids words of affirmations to help you get back on track!
 
 Feeling stuck on wording your proposal or your job applications, play Pomberry.
+
+Nonetheless, PomBerry is your go to game for instant satisfaction for the above!
