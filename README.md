@@ -9,8 +9,11 @@ PomBerry integrates the traditional FlappyBird game consisting of 2-D graphics,Â
 
 This game is adapted from "Flappy Bird", in which the player taps the screen to move the playerâ€™s character, the two fruits of your choice, to flap its 'wings' and move upwards and forwards. The player must navigate the character through a series of openings between XCodes Errors pillars. Colliding with or getting near a pilar results in a game over. The player will be awarded one point for each set of pilars successfully passed. The two fruits characters are:
 
-- Pomegranate ![](pomWingsUp.png)
-- Raspberry ![](raspWings.png)
+- Pomegranate
+![](pomWingsUp.png)
+
+- Raspberry 
+![](raspWings.png)
 
 
 ## Home Screen
