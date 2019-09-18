@@ -13,6 +13,7 @@ class GameScene: SKScene{
     
     var didGameStart = false
     var notDead = false
+    var isPom = true
     
     //Counter
     var score: Int = 0
@@ -26,8 +27,8 @@ class GameScene: SKScene{
     //Buttons
     var restartButton = SKSpriteNode()
     var pauseButton = SKSpriteNode()
-    var pickRasButton = SKSpriteNode()
-    var pickPomButtom = SKSpriteNode()
+    var switchFruitButton = SKSpriteNode()
+    
     
     //Logo
     var logo = SKSpriteNode()
@@ -39,13 +40,19 @@ class GameScene: SKScene{
     //Avatar (Pomegranate / Raspberry)
     //Create Atlas
     let fruitAtlas = SKTextureAtlas(named: "PomRas")
-    var fruitSprites = Array<Any>()
+    var pomSprites = Array<Any>()
+    var rasSprites = Array<Any>()
     var fruit = SKSpriteNode()
-    var repeatActionFruit = SKAction()
+    var repeatActionPom = SKAction()
+    var repeatActionRas = SKAction()
+    
     
     //background Music
     var bgMusic = SKAudioNode()
     
+    //Fruit Tecture
+    let pomegrante = SKTextureAtlas(named: "PomRas").textureNamed("pomWings")
+    let raspberry = SKTextureAtlas(named: "PomRas").textureNamed("raspWings")
     
     
     //randomsound
@@ -61,33 +68,53 @@ class GameScene: SKScene{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         
-        if didGameStart == false{
-
-            //Logo shrinks and disappears
-            logo.run(SKAction.scale(by: 0.5, duration: 0.2), completion: {
-                self.logo.removeFromParent()
-            })
-            
-            //Tap to play label disappears
-            tapToPlayLabel.removeFromParent()
-            
-            
-           // userChoiceLabel = createUserPromptLabel()
-           // self.addChild(userChoiceLabel)
-//
-//            createPickRasButton()
-//
-//            fruit.isHidden = true
-            
-            startGame()
-        }
+        //        if didGameStart == false{
+        //
+        //            //Logo shrinks and disappears
+        //            logo.run(SKAction.scale(by: 0.5, duration: 0.2), completion: {
+        //                self.logo.removeFromParent()
+        //            })
+        //
+        //            //Tap to play label disappears
+        //            tapToPlayLabel.removeFromParent()
+        //
+        ////            fruit.isHidden = true
+        //
+        ////            startGame()
+        //        }
         
-        enablePlayerMovement()
+        
+        //        //Fruit avatar will continue to be animated
+        //        if isPom == true{
+        //            self.fruit.run(repeatActionPom)
+        //        }else{
+        //            self.fruit.run(repeatActionRas)
+        //        }
+        
+        //        enablePlayerMovement()
         
         for touch in touches{
             
             //Touch coordinates
             let location = touch.location(in: self)
+            
+            if switchFruitButton.contains(location){
+                
+                print("switch button pressed")
+                
+                if isPom == false{
+                    switchFruitButton.texture = SKTexture(imageNamed: "pomWings")
+                    fruit.texture = SKTextureAtlas(named: "PomRas").textureNamed("raspWings")
+                    isPom = true
+                }else{
+                    switchFruitButton.texture = SKTexture(imageNamed: "raspWings")
+                    fruit.texture = SKTextureAtlas(named: "PomRas").textureNamed("pomWings")
+                    
+                    isPom = false
+                }
+                return
+            }
+            
             
             //If user touches where the restart button is located, only appears if the game is over
             if notDead == true{
@@ -101,7 +128,9 @@ class GameScene: SKScene{
                         UserDefaults.standard.set(0, forKey: "highestScore")
                     }
                     restartScene()
+                    return
                 }
+                
             } else {
                 //If the user touches where the pause button is located at
                 if pauseButton.contains(location){
@@ -116,6 +145,43 @@ class GameScene: SKScene{
             }
         }
         
+        switch didGameStart {
+            
+        case false:
+            
+            //Logo shrinks and disappears
+            logo.run(SKAction.scale(by: 0.5, duration: 0.2), completion: {
+                self.logo.removeFromParent()
+            })
+            
+            //Tap to play label disappears
+            tapToPlayLabel.removeFromParent()
+            
+            //            fruit.isHidden = true
+            
+            switchFruitButton.removeFromParent()
+            
+            didGameStart = true
+            
+            startGame()
+            enablePlayerMovement()
+            
+            
+        case true:
+            
+            if isPom == false{
+                self.fruit.run(repeatActionPom)
+
+            }else{
+                self.fruit.run(repeatActionRas)
+
+            }
+            
+            
+            enablePlayerMovement()
+            
+        }
+        
         
     }
     
@@ -126,8 +192,11 @@ class GameScene: SKScene{
     
     
     private func startGame(){
+        
+        switchFruitButton.isHidden = true
+        
         didGameStart = true
-       
+        
         
         //Fruit avatar will now be able to fall
         fruit.physicsBody?.affectedByGravity = true
@@ -136,11 +205,11 @@ class GameScene: SKScene{
         createPauseButton()
         
         //Switch Fruit Button appears
-//        createChangeFruitButton()
-//
-        
-        //Fruit avatar will continue to be animated
-        self.fruit.run(repeatActionFruit)
+        //        createChangeFruitButton()
+        //
+        //
+        //        //Fruit avatar will continue to be animated
+        //        self.fruit.run(repeatActionPom)
         
         
         //Spawn pillars
@@ -220,19 +289,23 @@ class GameScene: SKScene{
             background.size = (self.view?.bounds.size)!
             self.addChild(background)
         }
-        //
-        //        fruitSprites.append(fruitAtlas.textureNamed("pomWings"))
-        //        fruitSprites.append(fruitAtlas.textureNamed("pomWingsUp"))
         
-        fruitSprites.append(fruitAtlas.textureNamed("raspWings"))
-        fruitSprites.append(fruitAtlas.textureNamed("raspWingsUp"))
+        pomSprites.append(fruitAtlas.textureNamed("pomWings"))
+        pomSprites.append(fruitAtlas.textureNamed("pomWingsUp"))
+        
+        rasSprites.append(fruitAtlas.textureNamed("raspWings"))
+        rasSprites.append(fruitAtlas.textureNamed("raspWingsUp"))
         
         self.fruit = createFruit()
         self.addChild(fruit)
         
-        let fruitAnimation = SKAction.animate(with: self.fruitSprites as! [SKTexture], timePerFrame: 0.1)
+        let pomAnimation = SKAction.animate(with: self.pomSprites as! [SKTexture], timePerFrame: 0.1)
         
-        self.repeatActionFruit = SKAction.repeatForever(fruitAnimation)
+        let rasAnimation = SKAction.animate(with: self.rasSprites as! [SKTexture], timePerFrame: 0.1)
+        
+        self.repeatActionPom = SKAction.repeatForever(pomAnimation)
+        
+        self.repeatActionRas = SKAction.repeatForever(rasAnimation)
         
         scoreLabel = createScoreLabel()
         self.addChild(scoreLabel)
@@ -248,7 +321,8 @@ class GameScene: SKScene{
         bgMusic = SKAudioNode(fileNamed: "gypsy.mp3" )
         self.addChild(bgMusic)
         
-       
+        createSwitchFruitButton()
+        
     }
     
     func restartScene(){
@@ -294,13 +368,13 @@ extension GameScene: SKPhysicsContactDelegate{
                 //Remove Pause Button
                 pauseButton.removeFromParent()
                 
-               
-                
                 //Show Restart Button
                 createRestartButton()
                 
                 //Stop all actions (e.g. fruit animations)
                 fruit.removeAllActions()
+                
+
             }
             
             
@@ -317,8 +391,8 @@ extension GameScene: SKPhysicsContactDelegate{
             scoreLabel.text = "\(score)"
             
             //Take out bitmoji
-        
-                bodyB.node?.removeFromParent()
+            
+            bodyB.node?.removeFromParent()
             
             
         }else if bodyA.categoryBitMask == CollisionBitMask.staffCategory && bodyB.categoryBitMask == CollisionBitMask.avatarCategory{
@@ -332,8 +406,8 @@ extension GameScene: SKPhysicsContactDelegate{
             scoreLabel.text = "\(score)"
             
             //Take out bitmoji
-        
-                bodyA.node?.removeFromParent()
+            
+            bodyA.node?.removeFromParent()
             
         }
     }

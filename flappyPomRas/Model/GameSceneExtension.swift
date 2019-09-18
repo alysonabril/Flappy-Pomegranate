@@ -13,10 +13,14 @@ extension GameScene {
     
     func createFruit() -> SKSpriteNode {
         
-//        let fruit = SKSpriteNode(texture: SKTextureAtlas(named: "PomRas").textureNamed("pomWings"))
-        
-        let fruit = SKSpriteNode(texture: SKTextureAtlas(named: "PomRas").textureNamed("raspWingsUp"))
-        
+//        let fruit = SKSpriteNode(texture: pomegrante)
+        let fruit = SKSpriteNode()
+                
+        if isPom == true{
+            fruit.texture = pomegrante
+        }else{
+            fruit.texture = raspberry
+        }
         
         //Fruit
         fruit.size = CGSize(width: 100, height: 100)
@@ -65,16 +69,20 @@ extension GameScene {
         self.addChild(pauseButton)
     }
     
-    func createPickRasButton(){
-        pickRasButton = SKSpriteNode(imageNamed: "raspWings")
-        pickRasButton.size = CGSize(width: 100, height: 100)
-        pickRasButton.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 100)
+    func createSwitchFruitButton(){
         
-        pickRasButton.zPosition = 6
-        self.addChild(pickRasButton)
-    }
-    
+        if isPom == true{
+            switchFruitButton = SKSpriteNode(imageNamed: "raspWings")
+        }else{
+            switchFruitButton = SKSpriteNode(imageNamed: "pomWings")
+        }
+        switchFruitButton.size = CGSize(width: 100, height: 100)
+        switchFruitButton.position = CGPoint(x: 30, y: 30)
+        
+        switchFruitButton.zPosition = 6
+        self.addChild(switchFruitButton)
 
+    }
     
     
     func createScoreLabel() -> SKLabelNode{
@@ -105,17 +113,17 @@ extension GameScene {
         return highscoreLbl
     }
     
-    func createUserPromptLabel() -> SKLabelNode{
-        let userChoiceLabel = SKLabelNode()
-        userChoiceLabel.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 200)
-        
-        userChoiceLabel.text = "Choose your character"
-        userChoiceLabel.zPosition = 5
-        userChoiceLabel.fontSize = 25
-        userChoiceLabel.fontName = "Noteworthy-Bold"
-        
-        return userChoiceLabel
-    }
+//    func createUserPromptLabel() -> SKLabelNode{
+//        let userChoiceLabel = SKLabelNode()
+//        userChoiceLabel.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 200)
+//
+//        userChoiceLabel.text = "Choose your character"
+//        userChoiceLabel.zPosition = 5
+//        userChoiceLabel.fontSize = 25
+//        userChoiceLabel.fontName = "Noteworthy-Bold"
+//
+//        return userChoiceLabel
+//    }
     
     
     func createLogo() {
@@ -166,13 +174,16 @@ extension GameScene {
         xCodePillarPair = SKNode()
         xCodePillarPair.name = "xCodePillarPair"
         
-        let pillarArr = ["globalError","raspberryError","bracketError","bracketError2","expectedError","placeholderError", "redecError", "returnError", "typeError"]
+//        let pillarArr = ["globalError","raspberryError","bracketError","bracketError2","expectedError","placeholderError", "redecError", "returnError", "typeError"]
+//
         
         
-        
-        let topPillar = SKSpriteNode(imageNamed: pillarArr.randomElement()!)
-        let bottomPillar = SKSpriteNode(imageNamed: pillarArr.randomElement()!)
+//        let topPillar = SKSpriteNode(imageNamed: pillarArr.randomElement()!)
+//        let bottomPillar = SKSpriteNode(imageNamed: pillarArr.randomElement()!)
     
+        let topPillar = SKSpriteNode(imageNamed:"globalError")
+               let bottomPillar = SKSpriteNode(imageNamed: "typeError")
+        
         
         topPillar.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 420)
         bottomPillar.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - 420)
