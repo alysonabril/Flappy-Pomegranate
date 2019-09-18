@@ -83,6 +83,9 @@ extension GameScene {
         scoreLabel.zPosition = 5
         scoreLabel.text = "\(score)"
         scoreLabel.text = "0"
+        scoreLabel.fontName = "Noteworthy-Bold"
+        scoreLabel.fontColor = SKColor.init(red: 252/255, green: 5/255, blue: 129/255, alpha: 1)
+        
         
         return scoreLabel
     }
@@ -92,13 +95,13 @@ extension GameScene {
         let highscoreLbl = SKLabelNode()
         highscoreLbl.position = CGPoint(x: self.frame.width - 80, y: self.frame.height - 62)
         if let highestScore = UserDefaults.standard.object(forKey: "highestScore"){
-            highscoreLbl.text = "Highest Score: \(highestScore)"
+            highscoreLbl.text = "High Score: \(highestScore)"
         } else {
-            highscoreLbl.text = "Highest Score: 0"
+            highscoreLbl.text = "High Score: 0"
         }
         highscoreLbl.zPosition = 5
-        highscoreLbl.fontSize = 15
-        highscoreLbl.fontName = "Helvetica-Bold"
+        highscoreLbl.fontSize = 23
+        highscoreLbl.fontName = "Noteworthy-Bold"
         return highscoreLbl
     }
     
