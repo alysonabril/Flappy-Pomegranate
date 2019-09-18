@@ -61,8 +61,8 @@ extension GameScene {
     
     func createPauseButton() {
         pauseButton = SKSpriteNode(imageNamed: "pause")
-        pauseButton.size = CGSize(width: 50, height: 50)
-        pauseButton.position = CGPoint(x: self.frame.width - 30 , y: 30)
+        pauseButton.size = CGSize(width: 65, height: 65)
+        pauseButton.position = CGPoint(x: self.frame.width - 40 , y: 45)
 
         pauseButton.zPosition = 6
         
@@ -154,9 +154,9 @@ extension GameScene {
         
         let faces = ["David","David2","David3","David4", "Iram", "Iram3", "Ish", "Ish2", "Oli", "Oli2"]
         
-        let randomFace = Int(arc4random_uniform(UInt32(faces.count)))
+        let randomFace = faces.randomElement()
         
-        let staffBitmoji = SKSpriteNode(imageNamed: faces[randomFace])
+        let staffBitmoji = SKSpriteNode(imageNamed: randomFace!)
         
         staffBitmoji.size = CGSize(width: 100, height: 100)
         staffBitmoji.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
