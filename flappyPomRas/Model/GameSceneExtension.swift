@@ -87,7 +87,7 @@ extension GameScene {
     
     func createScoreLabel() -> SKLabelNode{
         let scoreLabel = SKLabelNode()
-        scoreLabel.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.6)
+        scoreLabel.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 3.0)
         scoreLabel.zPosition = 5
         scoreLabel.text = "\(score)"
         scoreLabel.text = "0"
@@ -130,7 +130,7 @@ extension GameScene {
         logo = SKSpriteNode()
         logo = SKSpriteNode(imageNamed: "LaunchScreenLogo")
         logo.size = CGSize(width: 272, height: 65)
-        logo.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 100)
+        logo.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 150)
         logo.setScale(0.5)
         self.addChild(logo)
         logo.run(SKAction.scale(to: 1.0, duration: 0.3))
