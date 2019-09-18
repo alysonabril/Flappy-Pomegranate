@@ -9,7 +9,7 @@ This game is adapted from "Flappy Bird", in which the player taps the screen to 
 
 
 ## Home Screen
-![](HomeScreen.png)
+![gif](https://media.giphy.com/media/kDrAP2mdqAFATA7r64/giphy.gif)
 
 ## Character Selection Screen
 ![gif](https://media.giphy.com/media/Xc4GWc0116mMPOmucj/giphy.gif)
@@ -19,9 +19,9 @@ This game is adapted from "Flappy Bird", in which the player taps the screen to 
 
 # Authors
 
-- Jack Wong - Tech Lead
-- Eric Widjaja - Tech Lead
-- Krystal Campbell - Project Lead
-- Alyson Abril - Design Lead
+- **Jack Wong** - Tech Lead
+- **Eric Widjaja** - Tech Lead
+- **Krystal Campbell** - Project Lead
+- **Alyson Abril** - Design Lead
 
 # Overview
