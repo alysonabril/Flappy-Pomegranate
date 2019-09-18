@@ -140,10 +140,10 @@ extension GameScene {
         let taptoplayLbl = SKLabelNode()
         taptoplayLbl.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 100)
         taptoplayLbl.text = "Tap anywhere to play"
+        taptoplayLbl.fontName = "Noteworthy-Bold"
         taptoplayLbl.fontColor = UIColor.black
         taptoplayLbl.zPosition = 5
         taptoplayLbl.fontSize = 20
-        taptoplayLbl.fontName = "HelveticaNeue"
         return taptoplayLbl
     }
     
