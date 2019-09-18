@@ -42,7 +42,10 @@ class GameScene: SKScene{
     var fruitSprites = Array<Any>()
     var fruit = SKSpriteNode()
     var repeatActionFruit = SKAction()
-    let bgmusic = "gypsy.mp3"
+    
+    //background Music
+    var bgMusic = SKAudioNode()
+    
     
     
     //randomsound
@@ -59,7 +62,7 @@ class GameScene: SKScene{
         
         
         if didGameStart == false{
-           
+
             //Logo shrinks and disappears
             logo.run(SKAction.scale(by: 0.5, duration: 0.2), completion: {
                 self.logo.removeFromParent()
@@ -242,9 +245,10 @@ class GameScene: SKScene{
         tapToPlayLabel = createTaptoplayLabel()
         self.addChild(tapToPlayLabel)
         
-        let bgMusic = SKAudioNode(fileNamed: bgmusic )
+        bgMusic = SKAudioNode(fileNamed: "gypsy.mp3" )
         self.addChild(bgMusic)
         
+       
     }
     
     func restartScene(){
@@ -282,11 +286,15 @@ extension GameScene: SKPhysicsContactDelegate{
             
             if notDead == false{
                 
+                self.bgMusic.removeFromParent()
+                run(SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: true))
                 //Game Over
                 notDead = true
                 
                 //Remove Pause Button
                 pauseButton.removeFromParent()
+                
+               
                 
                 //Show Restart Button
                 createRestartButton()

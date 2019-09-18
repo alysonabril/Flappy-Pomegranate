@@ -31,7 +31,7 @@ extension GameScene {
         fruit.physicsBody?.linearDamping = 1.0
         
         //This is how we determine the bounciness of said fruit
-        fruit.physicsBody?.restitution = 1
+        fruit.physicsBody?.restitution = 0.2
         
         fruit.physicsBody?.categoryBitMask = CollisionBitMask.avatarCategory
         fruit.physicsBody?.collisionBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.groundCategory
